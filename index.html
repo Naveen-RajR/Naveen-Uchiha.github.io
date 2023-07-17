@@ -7,20 +7,39 @@
     <title>GitHub pages</title>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-
         document.querySelector("form").onsubmit = function () {
           const name = document.querySelector("#name").value;
           alert(`Hello, ${name} `);
         };
 
-        document.querySelectorAll('button').forEach(function(button){
-          button.onclick=function(){
-            document.querySelector('h1').style.color=button.dataset.color
+        document.querySelectorAll("button").forEach(function (button) {
+          button.onclick = function () {
+            document.querySelector("h1").style.color = button.dataset.color;
+          };
+        });
+
+        document.querySelector("select").onchange = function () {
+          document.querySelector("body").style.backgroundColor = this.value;
+        };
+
+        document.querySelector("#submit").disabled = true;
+        document.querySelector("#field").onkeyup = () => {
+          if (document.querySelector("#field").value.length > 0) {
+            document.querySelector("#submit").disabled = false;
           }
-        })
+        };
 
-        
+        document.querySelector("#taskForm").onsubmit = () => {
+          const fieldValue = document.querySelector("#field").value;
+          const li = document.createElement("li");
+          li.innerHTML = fieldValue;
+          document.querySelector("#task").append(li);
 
+          document.querySelector("#field").value = "";
+          document.querySelector('#submit').disabled=true
+
+          return false;
+        };
       });
     </script>
   </head>
@@ -28,11 +47,27 @@
     <h1>Welcome to Github Pages!</h1>
     <button data-color="red">Red</button>
     <button data-color="blue">Blue</button>
-    <button data-color="deeppink">deeppink</button> <br> <br>
+    <button data-color="deeppink">deeppink</button> <br />
+    <br />
+
+    <select name="" id="" style="padding: 5px">
+      <option value="violet">violet</option>
+      <option value="yellow">yellow</option>
+      <option value="orange">orange</option>
+    </select>
+    <br />
+    <br />
 
     <form action="">
       <input type="text" autofocus id="name" />
       <input type="submit" />
     </form>
+    <br />
+    <form id="taskForm">
+      <h2>Tasks</h2>
+      <input type="text" id="field" />
+      <input type="submit" id="submit" />
+    </form>
+    <ul id="task"></ul>
   </body>
 </html>
