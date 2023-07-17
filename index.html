@@ -12,11 +12,24 @@
           const name = document.querySelector("#name").value;
           alert(`Hello, ${name} `);
         };
+
+        document.querySelectorAll('button').forEach(function(button){
+          button.onclick=function(){
+            document.querySelector('h1').style.color=button.dataset.color
+          }
+        })
+
+        
+
       });
     </script>
   </head>
   <body>
     <h1>Welcome to Github Pages!</h1>
+    <button data-color="red">Red</button>
+    <button data-color="blue">Blue</button>
+    <button data-color="deeppink">deeppink</button> <br> <br>
+
     <form action="">
       <input type="text" autofocus id="name" />
       <input type="submit" />
